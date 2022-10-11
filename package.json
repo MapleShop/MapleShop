@@ -1,0 +1,24 @@
+{
+  "name": "mapleshop",
+  "version": "1.0.0",
+  "description": "Tienda virtual de ropa deportiva",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MapleShop/MapleShop.git"
+  },
+  "author": "Maple",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MapleShop/MapleShop/issues"
+  },
+  "homepage": "https://github.com/MapleShop/MapleShop#readme",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongoose": "^6.6.5"
+  }
+}
