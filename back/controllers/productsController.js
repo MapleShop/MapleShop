@@ -4,6 +4,12 @@ const fetch =(url)=>import('node-fetch').then(({default:fetch})=>fetch(url)); //
 //Ver la lista de productos
 exports.getProducts=async(req,res,next) =>{
     const productos= await producto.find();
+    if (!productos){
+        return res.status(404).json({
+            success:false,
+            error:true
+        })
+    }
     res.status(200).json({
         success:true,
         count: productos.length,//Hace el conteo de los productos
@@ -13,24 +19,25 @@ exports.getProducts=async(req,res,next) =>{
 
 //Ver un producto por ID
 exports.getProductById= async(req, res, next) =>{
-    const productobyid=await producto.findById(req.params.id)
-    if (!productobyid){
+    const product=await producto.findById(req.params.id)
+    if (!product){
         return res.status(404).json({
             success:false,
-            message: "No encontramos ese producto"
+            message: "No encontramos ese producto",
+            error:true
         })
     }
     res.status(200).json({
         success:true,
         message: "Aqui debajo encuentras información sobre tu producto",
-        productobyid
+        product
     })
 }
 
 // Update un producto
 exports.updateProduct= async (req, res, next) =>{
-    let productobyid=await producto.findById(req.params.id)//Variable de tipo modificable
-    if (!productobyid){//Verifico que el objeto no existe para finalizar el proceso
+    let product=await producto.findById(req.params.id)//Variable de tipo modificable
+    if (!product){//Verifico que el objeto no existe para finalizar el proceso
         return res.status(404).json({
             success:false,
             message: "No encontramos ese producto"
@@ -38,7 +45,7 @@ exports.updateProduct= async (req, res, next) =>{
     }
 
     //Si el objeto si existia, entonces si ejecuto la actualizacion
-    productobyid=await producto.findByIdAndUpdate(req.params.id, req.body, {
+    product=await producto.findByIdAndUpdate(req.params.id, req.body, {
         new: true,//Valido solo los atributos nuevos o actualizados
         runValidators:true
     });
@@ -46,7 +53,7 @@ exports.updateProduct= async (req, res, next) =>{
     res.status(200).json({
         success:true,
         message:"Producto actualizado correctamente",
-        productobyid
+        product
     })
 }
 
@@ -62,15 +69,15 @@ exports.newProduct=async(req,res,next)=>{
 
 //Eliminar un producto
 exports.deleteProduct= async (req, res, next) =>{
-    const productobyid=await producto.findById(req.params.id)//Variable de tipo modificable
-    if (!productobyid){//Verifico que el objeto no existe para finalizar el proceso
+    const product=await producto.findById(req.params.id)//Variable de tipo modificable
+    if (!product){//Verifico que el objeto no existe para finalizar el proceso
         return res.status(404).json({
             success:false,
             message: "No encontramos ese producto"
         })
     }
 
-    await productobyid.remove();//Eliminamos el proceso
+    await product.remove();//Eliminamos el proceso
     res.status(200).json({
         success:true,
         message: "Producto eliminado correctamente",

@@ -5,6 +5,7 @@ import { Footer } from './components/layout/Footer';
 import Home from './components/Home';
 //Router traido desde react-router-dom (no confundir con el de express)
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { ProductDetails } from './components/products/ProductDetails';
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />}/>
             <Route path="/Home" element={<Home />}/>
+            <Route path="/producto/:id" element={<ProductDetails/>}/>
           </Routes>
         </div>
         <Footer />
