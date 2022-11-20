@@ -5,7 +5,7 @@ const mongoose=require("mongoose");
 
 //Metodo que ejecute la conexión a base de datos
 const connectDatabase = () =>{
-    mongoose.connect(process.env.DB_LOCAL_URI, {//Convoco al archivo de config, cuando necesito algo de el, llamo al enviroment del proceso
+    mongoose.connect(process.env.DB_URI, {//Convoco al archivo de config, cuando necesito algo de el, llamo al enviroment del proceso
         useNewUrlParser: true,
         useUnifiedTopology: true
     }).then(conectar => {
