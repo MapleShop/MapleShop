@@ -35,7 +35,7 @@ const productosSchema=mongoose.Schema({
     ],
     categoria:{
         type:String,
-        requeired:[true,"Por favor, seleccione la categoria de producto."],
+        required:[true, "Por favor, seleccione la categoria del producto a registrar"],
         enum:{
             values:[
                 "Hoodies",
